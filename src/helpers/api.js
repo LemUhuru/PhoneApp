@@ -1,4 +1,4 @@
-export function checkStatus(response) {
+function checkStatus(response) {
     const { status, data } = response
   
     if (status != 200) {
@@ -8,3 +8,7 @@ export function checkStatus(response) {
     return Promise.resolve(data)
   }
   
+
+  export  {
+      checkStatus,
+  }

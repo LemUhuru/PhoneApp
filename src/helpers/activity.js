@@ -1,14 +1,14 @@
 import { missedCallTypes } from './constants';
 
-export function getActivityIds(activities) {
+function getActivityIds(activities) {
     return Object.keys(activities);
 }
 
-export function getMissedCallCount(activities) {
+function getMissedCallCount(activities) {
     let totalMissedActivities = 0;
 
-    getInbox(activities).forEach(activity => {
-        if (activity.call_type && missedCallTypes.includes(activity.call_type)) {
+    getInbox(activities).forEach(({ call_type }) => {
+        if (call_type && missedCallTypes.includes(call_type)) {
             totalMissedActivities += 1;
         }
     });
@@ -16,32 +16,26 @@ export function getMissedCallCount(activities) {
     return totalMissedActivities;
 };
 
-export function isMissedCall(call_type) {
+function isMissedCall(call_type) {
     return missedCallTypes.includes(call_type);
 }
 
 
-export function getInbox(activities) {
-    return getActivities(activities).filter(activity => {
-        const { is_archived } = activity;
-        
-        if (!is_archived) {
-            return activity;
-        };
-    });
+function getInbox(activities) {
+    return getActivities(activities).filter(activity => !activity.is_archived);
 };
 
-export function getActivityById(id, activities) {
+function getActivityById(id, activities) {
     return activities[id];
 }
 
-export function getActivities(activities) {
+function getActivities(activities) {
     return getActivityIds(activities).map(activityId => {
         return activities[activityId];
     });
 }
 
-export function getActiveList(activeNav, activities) {
+function getActiveList(activeNav, activities) {
     switch (activeNav) {
         case 'inbox':
             return getInbox(activities)
@@ -53,3 +47,15 @@ export function getActiveList(activeNav, activities) {
             return getActivities(activities)
     };
 };
+
+
+
+export {
+    getActivityIds,
+    getMissedCallCount,
+    isMissedCall,
+    getInbox,
+    getActivityById,
+    getActivities,
+    getActiveList,
+}

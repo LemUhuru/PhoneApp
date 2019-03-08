@@ -16,113 +16,14 @@ import {
     RESET_ACTIVITIES_SUCCESS,
 } from './types';
 
-import { baseUrl } from './constants';
-import { checkStatus } from '../../helpers/api';
-import axios from 'axios';
 
-
-export function getActivities() {
-    return async dispatch => {
-        dispatch(getActivitiesRequest());
-
-        try {
-            const path = `${baseUrl}/activities`;
-            const response = await axios.get(path);
-            const data = await checkStatus(response);
-
-            dispatch(getActivitiesSuccess(data));
-        }
-        catch(error) {
-            dispatch(getActivitiesFailure(error));
-        }
-    }
-}
-
-
-export function updateActivities(activityIds) {
-    return async dispatch => {
-        dispatch(updateActivitiesRequest());
-
-        Promise.all (
-            activityIds.map(async activityId => {
-                const path=`${baseUrl}/activities/${activityId}`;
-                const response = await axios.post(path, { "is_archived": true });
-                const data = await checkStatus(response);
-                return data;
-            }))
-        .then(data => {
-            dispatch(updateActivitiesSuccess(data))
-        })
-        .catch(error => {
-            dispatch(updateActivitiesFailure(error))
-        })
-    };
-};
-
-
-export function updateActivity(activityId) {
-    return async dispatch => {
-        dispatch(updateActivityRequest());
-
-        try {
-            const path=`${baseUrl}/activities/${activityId}`;
-            const response = await axios.post(path, { "is_archived": true })
-            const data = await checkStatus(response);
-
-            dispatch(updateActivitySuccess(data))
-        }
-        catch(error) {
-            dispatch(updateActivityFailure(error));
-        }
-    }
-}
-
-
-export function getActivity(id) {
-    return async dispatch => {
-        dispatch(getActivitiesRequest());
-
-        try {
-            const path = `${baseUrl}/activities/${id}`;
-            const response = await axios.get(path);
-            const data = await checkStatus(response);
-
-            dispatch(getActivitiesSuccess(data));
-        }
-        catch(error) {
-            dispatch(getActivitiesFailure(error));
-        }
-    }
-}
-
-
-
-export function resetActivities() {
-    return async dispatch => {
-        dispatch(resetActivitiesRequest());
-
-        try {
-            const path=`${baseUrl}/reset`;
-            const response = await axios.get(path);
-            const data = await checkStatus(response);
-
-            dispatch(resetActivitiesSuccess(data))
-        }
-        catch(error) {
-            dispatch(resetActivitiesFailure(error));
-        }
-    }
-}
-
-
-
-export function getActivitiesRequest() {
+function getActivitiesRequest() {
     return {
         type: GET_ACTIVITIES_REQUEST,
     }
 }
 
-export function getActivitiesFailure(error) {
+function getActivitiesFailure(error) {
     return {
         type: GET_ACTIVITIES_FAILURE,
         payload: error,
@@ -130,20 +31,20 @@ export function getActivitiesFailure(error) {
 }
 
 
-export function getActivitiesSuccess(data) {
+function getActivitiesSuccess(data) {
     return {
         type: GET_ACTIVITIES_SUCCESS,
         payload: data,
     }
 }
 
-export function updateActivityRequest() {
+function updateActivityRequest() {
     return {
         type: UPDATE_ACTIVITY_REQUEST,
     }
 }
 
-export function updateActivityFailure(error) {
+function updateActivityFailure(error) {
     return {
         type: UPDATE_ACTIVITY_FAILURE,
         payload: error,
@@ -151,7 +52,7 @@ export function updateActivityFailure(error) {
 }
 
 
-export function updateActivitySuccess(data) {
+function updateActivitySuccess(data) {
     return {
         type: UPDATE_ACTIVITY_SUCCESS,
         payload: data,
@@ -159,13 +60,13 @@ export function updateActivitySuccess(data) {
 }
 
 
-export function updateActivitiesRequest() {
+function updateActivitiesRequest() {
     return {
         type: UPDATE_ACTIVITIES_REQUEST,
     }
 }
 
-export function updateActivitiesFailure(error) {
+function updateActivitiesFailure(error) {
     return {
         type: UPDATE_ACTIVITIES_FAILURE,
         payload: error,
@@ -173,7 +74,7 @@ export function updateActivitiesFailure(error) {
 }
 
 
-export function updateActivitiesSuccess(data) {
+function updateActivitiesSuccess(data) {
     return {
         type: UPDATE_ACTIVITIES_SUCCESS,
         payload: data,
@@ -181,13 +82,13 @@ export function updateActivitiesSuccess(data) {
 }
 
 
-export function resetActivitiesRequest() {
+function resetActivitiesRequest() {
     return {
         type: RESET_ACTIVITIES_REQUEST,
     }
 }
 
-export function resetActivitiesFailure(error) {
+function resetActivitiesFailure(error) {
     return {
         type: RESET_ACTIVITIES_FAILURE,
         payload: error,
@@ -195,10 +96,23 @@ export function resetActivitiesFailure(error) {
 }
 
 
-export function resetActivitiesSuccess(data) {
+function resetActivitiesSuccess(data) {
     return {
         type: RESET_ACTIVITIES_SUCCESS,
         payload: data,
     }
 }
 
+
+
+export {
+    getActivitiesRequest,
+    getActivitiesFailure,
+    getActivitiesSuccess,
+    updateActivitiesRequest,
+    updateActivitiesFailure,
+    updateActivitiesSuccess,
+    resetActivitiesRequest,
+    resetActivitiesFailure,
+    resetActivitiesSuccess,
+}

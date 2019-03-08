@@ -1,6 +1,6 @@
 import { monthNames } from './constants';
 
-export function parseUTCDate(utcDate) {
+function parseUTCDate(utcDate) {
     const newDate = new Date(utcDate);
     
     const month = newDate.getUTCMonth();
@@ -22,13 +22,19 @@ export function parseUTCDate(utcDate) {
     };
 }
 
-export function formatDate(month, day, year) {
+function formatDate(month, day, year) {
     const monthName = monthNames[month];
     
     return `${monthName}, ${day} ${year}`;
 }
 
-export function getMeridiem(hour) {
+function getMeridiem(hour) {
     return hour >= 12 ? 'PM' : 'AM';
 }
 
+
+export {
+    parseUTCDate,
+    formatDate,
+    getMeridiem,
+}

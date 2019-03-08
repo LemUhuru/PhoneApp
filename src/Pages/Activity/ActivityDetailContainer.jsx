@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateActivity, getActivities } from '../../modules/Activity/actions';
+import { updateActivity, getActivities } from '../../modules/Activity/operations';
 import ActivityDetail from './ActivityDetail.jsx';
 
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getActivities, updateActivities, updateActivity, resetActivities } from '../../modules/Activity/actions';
+import { getActivities, updateActivities, updateActivity, resetActivities } from '../../modules/Activity/operations';
 
 import ActivityFeed from './ActivityFeed.jsx';
 
