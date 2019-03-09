@@ -6,8 +6,8 @@ const SettingsButton = ({ activeNav }) => {
     const buttonClassNames = `settings-button ${isActive && "active"}`;
 
     return (<button id="settings-button" className={buttonClassNames}>
-        <SettingsIcon className={"settings-icon"} width={20} />
-    </button>);
+                <SettingsIcon className={"settings-icon"} width={20} />
+            </button>);
 }
 
 export default SettingsButton;

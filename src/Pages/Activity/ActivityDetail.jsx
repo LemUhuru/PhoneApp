@@ -1,25 +1,19 @@
 import React from 'react';
 import BackButton from '../../components/Common/Input/BackButton.jsx';
-import { getActivityById } from '../../helpers/activity'
 import ActivityArchiveButton from '../../components/Activity/ActivityArchiveButton.jsx';
 import Loader from '../../components/Common/Loader.jsx';
+import { getActivityById } from '../../helpers/activity'
+import { Link } from 'react-router-dom';
 
 const ActivityDetail = props => {
-    const { history, match: { params }, activity, updateActivity, getActivities } = props;
-    const { updateActivityPending, activities } = activity;
+    const { match: { params }, updateActivity, getActivities, updateActivityPending, activities } = props;
     const { id } = params;
     const currentActivity = getActivityById(id, activities);
-    const { created_at, direction, from, to, 
-        via, duration,  is_archived, call_type } = currentActivity;
-
-    const handleNavClick = () => history.push('/');
-    const handleArchive = () => getActivities().then(handleNavClick);
+    const { created_at, direction, from, to, via, duration,  is_archived, call_type } = currentActivity;
 
     return (
         <section className="activity-detail-section">
-            <nav onClick={handleNavClick} className="home-nav">
-                <BackButton history={history} />
-            </nav>
+            <Link to="/" className="home-nav"><BackButton /></Link>
             {updateActivityPending ? 
                 <Loader />
                 :
@@ -40,7 +34,6 @@ const ActivityDetail = props => {
                     updateActivity={updateActivity}
                     getActivities={getActivities}
                     activityId={id}
-                    handleArchive={handleArchive}
                     />}
                 </div>
                 )

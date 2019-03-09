@@ -29,22 +29,11 @@ class Footer extends Component {
         return (
             <footer>
                 <nav onClick={this.handleNavClick}>
-                    <ActivityNavButton 
-                        activities={activities}
-                        activeNav={activeNav} 
-                        />
-                    <UserButton 
-                        activeNav={activeNav}
-                    />
-                    <CallButton 
-                        activeNav={activeNav} 
-                    />
-                    <SettingsButton 
-                        activeNav={activeNav}
-                    />
-                    <StatusButton 
-                        activeNav={activeNav}
-                    />
+                    <ActivityNavButton activities={activities} activeNav={activeNav} />
+                    <UserButton activeNav={activeNav} />
+                    <CallButton activeNav={activeNav} />
+                    <SettingsButton activeNav={activeNav} />
+                    <StatusButton activeNav={activeNav} />
                 </nav>
             </footer>
         )

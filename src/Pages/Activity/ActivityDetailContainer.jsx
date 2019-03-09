@@ -4,8 +4,11 @@ import ActivityDetail from './ActivityDetail.jsx';
 
 
 const mapStateToProps = ({ activity }) => {
+    const { updateActivityPending, activities } = activity;
+
     return {
-        activity,
+        activities,
+        updateActivityPending,
     };
 };
 

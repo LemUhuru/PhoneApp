@@ -4,19 +4,9 @@ import AnsweredCallIcon from '../../../static/svg/answered-call.svg';
 import { missedCallTypes } from '../../../helpers/constants';
 
 const CallTypeIcon = ({ call_type }) => {
-    let selectedIcon;
+    let selectedIcon = missedCallTypes.includes(call_type) ? <MissedCallIcon /> : <AnsweredCallIcon />;
 
-    if (missedCallTypes.includes(call_type)) {
-        selectedIcon = <MissedCallIcon />;
-    } else {
-        selectedIcon = <AnsweredCallIcon />;
-    }
-
-    return (
-        <div className="call-type-icon">
-            {selectedIcon}
-        </div>
-    )
+    return <div className="call-type-icon">{selectedIcon}</div>;
 }
 
 export default CallTypeIcon;

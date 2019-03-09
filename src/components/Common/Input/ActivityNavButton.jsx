@@ -9,12 +9,10 @@ const ActivityNavButton = ({ activeNav, activities }) => {
     const totalMissedCalls = getMissedCallCount(activities);
     const displayBadge = totalMissedCalls > 0;
     
-    return (
-    <button id="activity-button" className={buttonClassNames}>
-        {displayBadge && <Badge value={totalMissedCalls} />}
-        <ActivityIcon className="activity-icon" width={20} />
-    </button>
-    );
+    return (<button id="activity-button" className={buttonClassNames}>
+                {displayBadge && <Badge value={totalMissedCalls} />}
+                <ActivityIcon className="activity-icon" width={20} />
+            </button>);
 }
 
 export default ActivityNavButton;

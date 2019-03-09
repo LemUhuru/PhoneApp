@@ -6,8 +6,8 @@ const UserButton = ({ activeNav })=> {
     const buttonClassNames = `user-button ${isActive && "active"}`;
 
     return (<button id="user-button" className={buttonClassNames}>
-        <UserIcon className="user-icon" width={20} />
-    </button>);
+                <UserIcon className="user-icon" width={20} />
+            </button>);
 }
 
 export default UserButton;

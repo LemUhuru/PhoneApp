@@ -2,9 +2,7 @@ import React from 'react';
 import VerticalDivider from '../Common/VerticalDivider.jsx';
 import ControlsButton from '../Common/Input/ControlsButton.jsx';
 
-const ActivityListFilterNav = props => {
-    const { handleNavClick, activeNav } = props;
-
+const ActivityListFilterNav = ({ handleNavClick, activeNav }) => {
     return (
         <div className="activity-filter-nav">
             <div onClick={handleNavClick} className="activity-filter-buttons">

@@ -8,14 +8,10 @@ const ActivityResetButton = ({ resetActivities, getActivities }) => {
         resetActivities().then(getActivities);
     };
 
-    return (
-        <button onClick={handleButtonClick} className="activity-archive-button">
-            <ResetButton width={20} /> 
-            <span className="activity-archive-text">
-                Reset all calls
-            </span>
-        </button>
-    )
+    return (<button onClick={handleButtonClick} className="activity-archive-button">
+                <ResetButton width={20} /> 
+                <span className="activity-archive-text">Reset all calls</span>
+            </button>)
 };
 
 export default ActivityResetButton;
