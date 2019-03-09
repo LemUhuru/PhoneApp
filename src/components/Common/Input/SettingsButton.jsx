@@ -1,7 +1,7 @@
 import React from 'react';
 import SettingsIcon from '../../../static/svg/settings-icon.svg';
 
-const SettingsButton = ({ activeNav, handleSVGClick }) => {
+const SettingsButton = ({ activeNav }) => {
     const isActive = activeNav === 'settings-button';
     const buttonClassNames = `settings-button ${isActive && "active"}`;
 

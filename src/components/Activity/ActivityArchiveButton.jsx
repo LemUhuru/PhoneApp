@@ -4,7 +4,7 @@ import { getActivityIds } from '../../helpers/activity';
 
 const ActivityArchiveButton = props => {
     const { archiveAll = false, updateActivity, updateActivities, 
-        activities, getActivities, activityId, handleArchive } = props;
+        activities, getActivities, activityId } = props;
 
     const handleButtonClick = event => {
         event.stopPropagation();

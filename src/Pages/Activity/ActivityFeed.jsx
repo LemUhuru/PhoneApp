@@ -24,7 +24,7 @@ class ActivityFeed extends Component {
     }
 
     render() {
-        const {activity, getActivities, updateActivity, resetActivities, 
+        const { activity, getActivities, updateActivity, resetActivities, 
             updateActivities, history } = this.props;
         const { activities, updateActivitiesPending, isPending } = activity;
         const { activeNav } = this.state;

@@ -13,6 +13,7 @@ const ActivityDetailButton = props => {
     return (
         <button className="activity-detail-button">
             <CallTypeIcon call_type={call_type} />
+            
             <div className="activity-from-to">
                 <div className="activity-from">{from}</div>
                 {to && <div className="activity-to">
@@ -20,7 +21,9 @@ const ActivityDetailButton = props => {
                     <span className="activity-to-name">{to}</span>
                 </div>}
             </div>
+
             <VerticalDivider />
+
             <div className="activity-time-section">
                 <span className="activity-time">{`${hour}:${minutes}`}</span>
                 <span className="activity-meridian">{meridiem}</span>

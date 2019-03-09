@@ -115,4 +115,7 @@ export {
     resetActivitiesRequest,
     resetActivitiesFailure,
     resetActivitiesSuccess,
+    updateActivityFailure,
+    updateActivityRequest,
+    updateActivitySuccess,
 }

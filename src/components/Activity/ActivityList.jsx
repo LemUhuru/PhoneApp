@@ -9,22 +9,10 @@ const ActivityList = ({ activeList, history }) => {
     }
 
     const activityList = activeList.length > 0 && activeList.map(activity => {
-        const { id, created_at, direction, from, to, is_archived, call_type } = activity;
+        const { id } = activity;
 
-        return (
-            <li key={id} id={`${id}`} >
-                <Activity
-                    onClick={handleActivityClick} 
-                    created_at={created_at}
-                    direction={direction}
-                    from={from}
-                    to={to}
-                    is_archived={is_archived}
-                    call_type={call_type}
-                    id={id}
-                />
-            </li>)
-        });
+        return <li key={id} id={`${id}`}><Activity activity={activity} /></li>
+    });
 
 
     return (
