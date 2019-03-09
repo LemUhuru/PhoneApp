@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getActivities, updateActivities, updateActivity, resetActivities } from './modules/Activity/operations';
+import { getActivities } from './modules/Activity/operations';
 import { withRouter } from 'react-router-dom';
 import App from './App.jsx';
 

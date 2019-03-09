@@ -10,7 +10,11 @@ import {
     resetActivitiesRequest,
     resetActivitiesSuccess,
     resetActivitiesFailure,
+    updateActivityRequest,
+    updateActivityFailure,
+    updateActivitySuccess,
 } from './actions';
+
 
 function getActivities() {
     return async dispatch => {
@@ -23,11 +27,17 @@ function getActivities() {
             dispatch(getActivitiesSuccess(data));
         }
         catch(error) {
-            const { response: { status, statusText }} = error;
-            dispatch(getActivitiesFailure(`${status}: ${statusText}`));
+            const { response } = error;
+
+            if (response) {
+                const { status, statusText } = response;
+
+                dispatch(getActivitiesFailure(`${status}: ${statusText}`));
+            }
         }
     }
 }
+
 
 function updateActivities(activityIds) {
     return async dispatch => {
@@ -36,15 +46,11 @@ function updateActivities(activityIds) {
         Promise.all (
             activityIds.map(async activityId => {
                 const path=`${baseUrl}/activities/${activityId}`;
-                const { data } = await axios.post(path, { "is_archived": true });
-                return data;
+
+                await axios.post(path, { "is_archived": true });
             }))
-        .then(data => {
-            dispatch(updateActivitiesSuccess(data))
-        })
-        .catch(error => {
-            dispatch(updateActivitiesFailure(error))
-        })
+        .then(data => dispatch(updateActivitiesSuccess(data)))
+        .catch(error => dispatch(updateActivitiesFailure(error)))
     };
 };
 
@@ -55,13 +61,18 @@ function updateActivity(activityId) {
 
         try {
             const path=`${baseUrl}/activities/${activityId}`;
-            const { data } = await axios.post(path, { "is_archived": true })
+            const { data } = await axios.post(path, { "is_archived": true });
 
             dispatch(updateActivitySuccess(data));
         }
         catch(error) {
-            const { response: { status, statusText }} = error;
-            dispatch(getActivitiesFailure(`${status}: ${statusText}`));
+            const { response } = error;
+
+            if (response) {
+                const { status, statusText } = response;
+
+                dispatch(updateActivityFailure(`${status}: ${statusText}`));
+            }
         }
     }
 }
@@ -69,17 +80,22 @@ function updateActivity(activityId) {
 
 function getActivity(id) {
     return async dispatch => {
-        dispatch(getActivitiesRequest());
+        dispatch(getActivityRequest());
 
         try {
             const path = `${baseUrl}/activities/${id}`;
             const { data } = await axios.get(path);
 
-            dispatch(getActivitiesSuccess(data));
+            dispatch(getActivitySuccess(data));
         }
         catch(error) {
-            const { response: { status, statusText }} = error;
-            dispatch(getActivitiesFailure(`${status}: ${statusText}`));
+            const { response } = error;
+
+            if (response) {
+                const { status, statusText } = response;
+
+                dispatch(getActivityFailure(`${status}: ${statusText}`));
+            }
         }
     }
 }
@@ -97,8 +113,13 @@ function resetActivities() {
             dispatch(resetActivitiesSuccess(data))
         }
         catch(error) {
-            const { response: { status, statusText }} = error;
-            dispatch(getActivitiesFailure(`${status}: ${statusText}`));
+            const { response } = error;
+
+            if (response) {
+                const { status, statusText } = response;
+
+                dispatch(resetActivitiesFailure(`${status}: ${statusText}`));
+            }
         }
     }
 }
