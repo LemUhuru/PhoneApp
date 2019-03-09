@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom';
 import App from './App.jsx';
 
 
-const mapStateToProps = ({ activity }) => {
+const mapStateToProps = ({ activity: { activities } }) => {
+
     return {
-        activity,
+        activities,
     };
 };
 

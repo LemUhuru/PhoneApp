@@ -4,33 +4,22 @@ import Footer from './components/Common/Footer.jsx';
 import ActivityFeed from './Pages/Activity/ActivityFeedContainer.jsx';
 import ActivityDetail from './Pages/Activity/ActivityDetailContainer.jsx';
 import { clearInterval } from 'timers';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      timer: null,
-    }
-  }
-
   componentDidMount() {
     const { getActivities } = this.props;
     getActivities();
 
-    let timer = setInterval(getActivities, 60000);
-    this.setState({ timer });
+    this.interval = setInterval(getActivities, 60000);
   }
 
   componentWillUnmount() {
-    const { timer } = this.state;
-    clearInterval(timer);
+    clearInterval(this.interval);
   }
 
   render() {
-    const { activity } = this.props;
-    const { activities } = activity;
+    const { activities } = this.props;
     
     return (
       <Router>
