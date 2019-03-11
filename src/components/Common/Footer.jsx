@@ -16,7 +16,6 @@ class Footer extends Component {
 
     handleNavClick = event => {
         event.stopPropagation();
-        // need to handle svg propagation
         const activeNav = event.target.id;
         
         this.setState({ activeNav });

@@ -7,11 +7,9 @@ import { clearInterval } from 'timers';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
-  componentDidMount() {
-    const { getActivities } = this.props;
-    getActivities();
-
-    this.interval = setInterval(getActivities, 60000);
+  async componentDidMount() {
+    await this.props.getActivities();
+    this.interval = setInterval(this.props.getActivities, 60000);
   }
 
   componentWillUnmount() {
@@ -21,19 +19,16 @@ class App extends Component {
   render() {
     const { activities } = this.props;
     
-    return (
-      <Router>
-        <div className='container'>
-          <Header />
-          <div className="container-view">
-            <Route path="/" exact render={props => <ActivityFeed {...props} /> } />
-            <Route path="/:id" render={props => <ActivityDetail {...props} activities={activities} /> } />
-          </div>
-          <Footer activities={activities} />
-        </div>
-      </Router>
-      
-    );
+    return (<Router>
+              <div className='container'>
+                <Header />
+                  <div className="container-view">
+                    <Route path="/" exact render={props => <ActivityFeed {...props} /> } />
+                    <Route path="/:id" render={props => <ActivityDetail {...props}  /> } />
+                  </div>
+                <Footer activities={activities} />
+              </div>
+            </Router>);
   }
 };
 

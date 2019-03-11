@@ -3,9 +3,7 @@ import { getActivities } from './modules/Activity/operations';
 import { withRouter } from 'react-router-dom';
 import App from './App.jsx';
 
-
 const mapStateToProps = ({ activity: { activities } }) => {
-
     return {
         activities,
     };
@@ -18,5 +16,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default withRouter(connect(
-    mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

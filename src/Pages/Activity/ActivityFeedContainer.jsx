@@ -5,8 +5,11 @@ import ActivityFeed from './ActivityFeed.jsx';
 
 
 const mapStateToProps = ({ activity }) => {
+    const { activities, isPending, updateActivitiesPending } = activity;
     return {
-        activity,
+        activities,
+        updateActivitiesPending,
+        isPending,
     };
 };
 
@@ -14,7 +17,6 @@ const mapDispatchToProps = dispatch => {
     return {
         getActivities: () => dispatch(getActivities()),
         updateActivities: activityIds => dispatch(updateActivities(activityIds)),
-        updateActivity: activityId => dispatch(updateActivity(activityId)),
         resetActivities: () => dispatch(resetActivities()),
     };
 };
